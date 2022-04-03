@@ -64,9 +64,15 @@ namespace AnkiCSV
             //https://www.youtube.com/watch?v=02vwciRkRYg
             //C:\Users\André\AppData\Roaming\Anki2\André\collection.media
             try
-            {
-                var phrases = System.IO.File.ReadAllLines(txtPhrases.Text).Where(c => string.IsNullOrEmpty(c) == false).ToList();
+            {                
                 var audios = new System.IO.DirectoryInfo(txtAudios.Text).GetFiles().Where(w => w.Extension.Equals(".mp3")).ToList();
+
+                var phrases = new List<string>();
+                if ((bool)chkUsarFrase.IsChecked == false)
+                    System.IO.File.ReadAllLines(txtPhrases.Text).Where(c => string.IsNullOrEmpty(c) == false).ToList();
+                else
+                    phrases = audios.Select(s => s.Name.Replace(".mp3", "")).ToList();
+
                 if (!Validacao(phrases, audios)) return;
 
                 //[sound:Did I hurt you.mp3]
@@ -89,10 +95,13 @@ namespace AnkiCSV
 
         private bool Validacao(List<string> phrases, List<FileInfo> audios)
         {
-            if (string.IsNullOrEmpty(txtPhrases.Text))
+            if ((bool)chkUsarFrase.IsChecked == false)
             {
-                MessageBox.Show("Informe o caminho do arquivo com as Frases", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                if (string.IsNullOrEmpty(txtPhrases.Text))
+                {
+                    MessageBox.Show("Informe o caminho do arquivo com as Frases", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return false;
+                }
             }
             if (string.IsNullOrEmpty(txtAudios.Text))
             {
@@ -104,15 +113,18 @@ namespace AnkiCSV
                 MessageBox.Show("Informe o caminho onde deseja salvar o CSV", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
-            if (phrases.Count > audios.Count)
+            if ((bool)chkUsarFrase.IsChecked == false)
             {
-                MessageBox.Show("A quantidade de Frases é maior do que Áudios", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
-            }
-            if (audios.Count > phrases.Count)
-            {
-                MessageBox.Show("A quantidade de Áudios é maior do que Frases", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                if (phrases.Count > audios.Count)
+                {
+                    MessageBox.Show("A quantidade de Frases é maior do que Áudios", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return false;
+                }
+                if (audios.Count > phrases.Count)
+                {
+                    MessageBox.Show("A quantidade de Áudios é maior do que Frases", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return false;
+                }
             }
             return true;
         }
