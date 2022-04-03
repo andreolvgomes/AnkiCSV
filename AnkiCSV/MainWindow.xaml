@@ -1,0 +1,42 @@
+﻿<Window x:Class="AnkiCSV.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Width="500" SizeToContent="Height" WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
+    <StackPanel Margin="10">
+        <TextBlock Text="Ao importar o CSV para o Anki, mova os audios para:" Foreground="Blue"/>
+        <TextBlock Text="C:\Users\{userName}\AppData\Roaming\Anki2\{userName}\collection.media" Margin="0,0,0,20" Foreground="Blue"/>
+        
+        <TextBlock Text="Frases"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="txtPhrases" Grid.Column="0"/>
+            <Button Grid.Column="1" Content="..." Width="50" Click="Frases_Click"/>
+        </Grid>
+
+        <TextBlock Text="Audios"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="txtAudios" Grid.Column="0"/>
+            <Button Grid.Column="1" Content="..." Width="50" Click="Audios_Click"/>
+        </Grid>
+
+        <TextBlock Text="Salvar CSV"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="txtSaveTo" Grid.Column="0"/>
+            <Button Grid.Column="1" Content="..." Width="50" Click="SaveTo_Click"/>
+        </Grid>
+        
+        <Button Content="Gerar CSV" Margin="0,50,0,0" Width="150" HorizontalAlignment="Right" Click="GerarCSV_Click"/>
+    </StackPanel>
+</Window>

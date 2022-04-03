@@ -1,0 +1,14 @@
+C:\Users\André\source\repos\AnkiCSV\AnkiCSV\bin\Debug\AnkiCSV.exe.config
+C:\Users\André\source\repos\AnkiCSV\AnkiCSV\bin\Debug\AnkiCSV.exe
+C:\Users\André\source\repos\AnkiCSV\AnkiCSV\bin\Debug\AnkiCSV.pdb
+C:\Users\André\source\repos\AnkiCSV\AnkiCSV\obj\Debug\AnkiCSV.csproj.AssemblyReference.cache
+C:\Users\André\source\repos\AnkiCSV\AnkiCSV\obj\Debug\MainWindow.baml
+C:\Users\André\source\repos\AnkiCSV\AnkiCSV\obj\Debug\MainWindow.g.cs
+C:\Users\André\source\repos\AnkiCSV\AnkiCSV\obj\Debug\App.g.cs
+C:\Users\André\source\repos\AnkiCSV\AnkiCSV\obj\Debug\AnkiCSV_MarkupCompile.cache
+C:\Users\André\source\repos\AnkiCSV\AnkiCSV\obj\Debug\AnkiCSV.g.resources
+C:\Users\André\source\repos\AnkiCSV\AnkiCSV\obj\Debug\AnkiCSV.Properties.Resources.resources
+C:\Users\André\source\repos\AnkiCSV\AnkiCSV\obj\Debug\AnkiCSV.csproj.GenerateResource.cache
+C:\Users\André\source\repos\AnkiCSV\AnkiCSV\obj\Debug\AnkiCSV.csproj.CoreCompileInputs.cache
+C:\Users\André\source\repos\AnkiCSV\AnkiCSV\obj\Debug\AnkiCSV.exe
+C:\Users\André\source\repos\AnkiCSV\AnkiCSV\obj\Debug\AnkiCSV.pdb
