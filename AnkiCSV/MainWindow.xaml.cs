@@ -64,12 +64,12 @@ namespace AnkiCSV
             //https://www.youtube.com/watch?v=02vwciRkRYg
             //C:\Users\André\AppData\Roaming\Anki2\André\collection.media
             try
-            {                
+            {
                 var audios = new System.IO.DirectoryInfo(txtAudios.Text).GetFiles().Where(w => w.Extension.Equals(".mp3")).ToList();
 
                 var phrases = new List<string>();
                 if ((bool)chkUsarFrase.IsChecked == false)
-                    System.IO.File.ReadAllLines(txtPhrases.Text).Where(c => string.IsNullOrEmpty(c) == false).ToList();
+                    phrases = System.IO.File.ReadAllLines(txtPhrases.Text).Where(c => string.IsNullOrEmpty(c) == false).ToList();
                 else
                     phrases = audios.Select(s => s.Name.Replace(".mp3", "")).ToList();
 
@@ -127,6 +127,12 @@ namespace AnkiCSV
                 }
             }
             return true;
+        }
+
+        private void OpenDirtemp_Click(object sender, RoutedEventArgs e)
+        {
+            string folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            System.Diagnostics.Process.Start(folder);
         }
     }
 }

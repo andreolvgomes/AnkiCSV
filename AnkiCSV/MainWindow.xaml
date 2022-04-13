@@ -11,7 +11,8 @@
     
     <StackPanel Margin="10">
         <TextBlock Text="Ao importar o CSV para o Anki, mova os audios para:" Foreground="Blue"/>
-        <TextBlock Text="C:\Users\{userName}\AppData\Roaming\Anki2\{userName}\collection.media" Margin="0,0,0,20" Foreground="Blue"/>
+        <TextBlock Text="C:\Users\{userName}\AppData\Roaming\Anki2\{userName}\collection.media"  Foreground="Blue"/>
+        <Button Content="Abrir dir Temp" Width="150" HorizontalAlignment="Left" Margin="0,0,0,20" Click="OpenDirtemp_Click"/>
 
         <CheckBox Content="Usar frases do audios .mp3" x:Name="chkUsarFrase"/>
         <TextBlock Text="Frases" Margin="0,5,0,0"/>
