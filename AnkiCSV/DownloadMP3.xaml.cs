@@ -92,6 +92,16 @@ namespace AnkiCSV
                 MessageBox.Show("Informe o local onde salvar os audios", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
+
+            var sentencesEquals = listSentences.GroupBy(c => c).Where(w => w.Count() > 1).Select(s => s.Key).ToList();
+            var urlsEquals = listUrls.GroupBy(c => c).Where(w => w.Count() > 1).Select(s => s.Key).ToList();
+
+            if (sentencesEquals.Count > 0 || urlsEquals.Count > 0)
+            {
+                MessageBox.Show($"Frases repetidas:\n\n" + string.Join("\n", sentencesEquals) + "\n\nURLs repetidas:\n\n" + string.Join("\n", urlsEquals), "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
             return true;
         }
 

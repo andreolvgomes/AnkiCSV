@@ -40,7 +40,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="txtSaveTo" Grid.Column="0"/>
+            <TextBox x:Name="txtSaveTo" Grid.Column="0" Text="C:\\audios"/>
             <Button Grid.Column="1" Content="..." Width="50" Click="SaveTo_Click"/>
         </Grid>
         
