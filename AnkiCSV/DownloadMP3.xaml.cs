@@ -63,8 +63,13 @@ namespace AnkiCSV
                         if ((bool)chkGetNameFromTitle.IsChecked)
                         {
                             var file = TagLib.File.Create(fileName);
-                            var newFile = file.Tag.Title.Replace("?", "").Replace("!", "") + ".mp3";
-                            System.IO.File.Move(fileName, System.IO.Path.Combine(txtSaveTo.Text, newFile));
+                            if (file.Tag.Title != null)
+                            {
+                                var newFile = file.Tag.Title.Replace("?", "").Replace("!", "") + ".mp3";
+                                //System.IO.File.Move(fileName, System.IO.Path.Combine(txtSaveTo.Text, newFile));
+                                System.IO.File.Copy(fileName, System.IO.Path.Combine(txtSaveTo.Text, newFile), true);
+                                System.IO.File.Delete(fileName);
+                            }
                         }
                     }
                 }
@@ -112,15 +117,18 @@ namespace AnkiCSV
                 MessageBox.Show("Os dois CheckBox não podem estar marcados ao mesmo tempo", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
-            var sentencesEquals = listSentences.GroupBy(c => c).Where(w => w.Count() > 1).Select(s => s.Key).ToList();
-            var urlsEquals = listUrls.GroupBy(c => c).Where(w => w.Count() > 1).Select(s => s.Key).ToList();
 
-            if (sentencesEquals.Count > 0 || urlsEquals.Count > 0)
+            if ((bool)chkGetNameFromTitle.IsChecked == false)
             {
-                MessageBox.Show($"Frases repetidas:\n\n" + string.Join("\n", sentencesEquals) + "\n\nURLs repetidas:\n\n" + string.Join("\n", urlsEquals), "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
-            }
+                var sentencesEquals = listSentences.GroupBy(c => c).Where(w => w.Count() > 1).Select(s => s.Key).ToList();
+                var urlsEquals = listUrls.GroupBy(c => c).Where(w => w.Count() > 1).Select(s => s.Key).ToList();
 
+                if (sentencesEquals.Count > 0 || urlsEquals.Count > 0)
+                {
+                    MessageBox.Show($"Frases repetidas:\n\n" + string.Join("\n", sentencesEquals) + "\n\nURLs repetidas:\n\n" + string.Join("\n", urlsEquals), "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return false;
+                }
+            }
             return true;
         }
 
