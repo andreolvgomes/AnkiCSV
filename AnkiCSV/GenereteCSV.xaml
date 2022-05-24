@@ -15,6 +15,7 @@
         <Button Content="Abrir dir Temp" Width="150" HorizontalAlignment="Left" Margin="0,0,0,20" Click="OpenDirtemp_Click"/>
 
         <CheckBox Content="Usar frases do audios .mp3" x:Name="chkUsarFrase"/>
+        <CheckBox Content="Usar frases do Title do .mp3" x:Name="chkUsarFraseTitle"/>
         <TextBlock Text="Frases (As frases devem estar uma em cada linha)" Margin="0,5,0,0"/>
         <TextBox x:Name="txtPhrases" Height="150" ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" AcceptsReturn="True"
                  IsEnabled="{Binding ElementName=chkUsarFrase, Path=IsChecked, Converter={StaticResource ConverterBoolInverse}}"/>
@@ -34,7 +35,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="txtAudios" Grid.Column="0"/>
+            <TextBox x:Name="txtAudios" Grid.Column="0" Text="C:\audios"/>
             <Button Grid.Column="1" Content="..." Width="50" Click="Audios_Click"/>
         </Grid>
 

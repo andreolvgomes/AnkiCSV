@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -46,12 +48,24 @@ namespace AnkiCSV
                         var splitUrl = item.Split('/');
                         var fileName = splitUrl[splitUrl.Length - 1];
 
-                        if ((bool)chk.IsChecked)
-                            fileName = listSentences[i].Replace("?", "").Replace("!", "") + ".mp3";
+                        // só captura a Frase da caixa de texto se não for capturar do Title do mp3
+                        if ((bool)chkGetNameFromTitle.IsChecked == false)
+                        {
+                            if ((bool)chk.IsChecked)
+                                fileName = listSentences[i].Replace("?", "").Replace("!", "") + ".mp3";
+                        }
 
                         fileName = System.IO.Path.Combine(txtSaveTo.Text, fileName);
 
                         client.DownloadFile(item, fileName);
+
+                        // captura a frase do title do mp3
+                        if ((bool)chkGetNameFromTitle.IsChecked)
+                        {
+                            var file = TagLib.File.Create(fileName);
+                            var newFile = file.Tag.Title.Replace("?", "").Replace("!", "") + ".mp3";
+                            System.IO.File.Move(fileName, System.IO.Path.Combine(txtSaveTo.Text, newFile));
+                        }
                     }
                 }
                 MessageBox.Show("Audios baixados com sucesso!", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -93,6 +107,11 @@ namespace AnkiCSV
                 return false;
             }
 
+            if ((bool)chkGetNameFromTitle.IsChecked && (bool)chk.IsChecked)
+            {
+                MessageBox.Show("Os dois CheckBox não podem estar marcados ao mesmo tempo", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
             var sentencesEquals = listSentences.GroupBy(c => c).Where(w => w.Count() > 1).Select(s => s.Key).ToList();
             var urlsEquals = listUrls.GroupBy(c => c).Where(w => w.Count() > 1).Select(s => s.Key).ToList();
 
