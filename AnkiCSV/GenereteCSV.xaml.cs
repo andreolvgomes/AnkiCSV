@@ -78,6 +78,16 @@ namespace AnkiCSV
 
                 if (!Validacao(phrases, audios)) return;
 
+                if (chkUsarFraseTitle.IsCheck() && chkRenameFromTitle.IsCheck())
+                {
+                    foreach (var audio in audios)
+                    {
+                        var file = TagLib.File.Create(audio.FullName);
+                        var phrase = file.Tag.Title;
+                        RenameMP3(audio.FullName, phrase);
+                    }
+                    audios = new System.IO.DirectoryInfo(txtAudios.Text).GetFiles().Where(w => w.Extension.Equals(".mp3")).ToList();
+                }
                 //[sound:Did I hurt you.mp3]
                 var list = new List<string>();
                 foreach (var audio in audios)
@@ -100,6 +110,16 @@ namespace AnkiCSV
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void RenameMP3(string fullName, string phrase)
+        {
+            var newFile = phrase.Replace("?", "").Replace("!", "") + ".mp3";
+
+            var path = System.IO.Path.GetDirectoryName(fullName);
+            var newName = System.IO.Path.Combine(path, newFile);
+            System.IO.File.Copy(fullName, System.IO.Path.Combine(txtSaveTo.Text, newName), true);
+            System.IO.File.Delete(fullName);
         }
 
         private bool Validacao(List<string> phrases, List<FileInfo> audios)

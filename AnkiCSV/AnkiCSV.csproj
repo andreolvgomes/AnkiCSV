@@ -77,10 +77,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Conveters\ConverterBoolInverse.cs" />
+    <Compile Include="Converters\ConverterBoolInverse.cs" />
     <Compile Include="DownloadMP3.xaml.cs">
       <DependentUpon>DownloadMP3.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\CheckBoxExtensions.cs" />
     <Compile Include="GenereteCSV.xaml.cs">
       <DependentUpon>GenereteCSV.xaml</DependentUpon>
       <SubType>Code</SubType>

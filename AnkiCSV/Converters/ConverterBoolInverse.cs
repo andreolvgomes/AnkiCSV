@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace AnkiCSV.Conveters
+namespace AnkiCSV.Converters
 {
     public class ConverterBoolInverse : IValueConverter
     {
