@@ -65,6 +65,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Contexts\GenereteCSVContext.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Models\GenereteCSVModel.cs" />
+    <Compile Include="Utils\NotifyPropertyChanged.cs" />
+    <Compile Include="Utils\ValidationMessage.cs" />
     <Page Include="DownloadMP3.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

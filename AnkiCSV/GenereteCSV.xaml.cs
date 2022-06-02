@@ -84,7 +84,10 @@ namespace AnkiCSV
                     {
                         var file = TagLib.File.Create(audio.FullName);
                         var phrase = file.Tag.Title;
-                        RenameMP3(audio.FullName, phrase);
+                        if (file.Tag.Title == null)
+                            System.IO.File.Delete(audio.FullName);
+                        else
+                            RenameMP3(audio.FullName, phrase);
                     }
                     audios = new System.IO.DirectoryInfo(txtAudios.Text).GetFiles().Where(w => w.Extension.Equals(".mp3")).ToList();
                 }
